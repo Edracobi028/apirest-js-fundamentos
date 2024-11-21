@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gatitos Aleatorios</title>
+</head>
+<body>
+    <h1>Gatitos Aleatorios</h1>
+    <!-- src lo cargaremos desde el main JS -->
+    <section id="randomMichis" >
+        <h2>Michis Aleatorios</h2>
+
+        <span id="error">Hola</span>
+
+        <article>
+            <img id="img1" width="150" alt="Foto gatito aleatorio">
+            <button id="btn1" onclick="saveFavouriteMichis()" >Guardar michi en favoritos</button>
+        </article>
+
+        <article>
+            <img id="img2" width="150" alt="Foto gatito aleatorio">
+            <button id="btn2" onclick="saveFavouriteMichis()" >Guardar michi en favoritos</button>
+        </article>
+
+
+        <button onclick="loadRandomMichis()">Recargar</button>
+    </section>
+
+    <section id="favoritesMichis" >
+        <h2>Michis Favoritos</h2>
+
+        <article>
+            <img id="img1" width="150" alt="Foto gatito aleatorio">
+            <button>Sacar michi de favoritos</button>
+        </article>
+    </section>
+    
+
+
+    <script src="./main.js"></script>
+</body>
+</html>
+
+//Video clase 3 8:20
