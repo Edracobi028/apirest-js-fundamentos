@@ -8,26 +8,24 @@
 <body>
     <h1>Gatitos Aleatorios</h1>
     <!-- src lo cargaremos desde el main JS -->
+    <span id="error"></span>
     <section id="randomMichis" >
         <h2>Michis Aleatorios</h2>
-
-        <span id="error">Hola</span>
-
+        
         <article>
             <img id="img1" width="150" alt="Foto gatito aleatorio">
-            <button id="btn1" onclick="saveFavouriteMichis()" >Guardar michi en favoritos</button>
+            <button id="btn1">Guardar michi en favoritos</button>
         </article>
 
         <article>
             <img id="img2" width="150" alt="Foto gatito aleatorio">
-            <button id="btn2" onclick="saveFavouriteMichis()" >Guardar michi en favoritos</button>
+            <button id="btn2">Guardar michi en favoritos</button>
         </article>
-
 
         <button onclick="loadRandomMichis()">Recargar</button>
     </section>
 
-    <section id="favoritesMichis" >
+    <section id="favoriteMichis" >
         <h2>Michis Favoritos</h2>
 
         <article>
@@ -36,10 +34,6 @@
         </article>
     </section>
     
-
-
     <script src="./main.js"></script>
 </body>
 </html>
-
-//Video clase 3 8:20
