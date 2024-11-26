@@ -115,5 +115,6 @@ async function deleteavouriteMichi(id) {
     }
 }
 //Agregue esta linea desde github para hacer prueba de git pull
+//Esta es una linea que no está en la rama development
 loadRandomMichis();
 loadFavouritesMichis();
