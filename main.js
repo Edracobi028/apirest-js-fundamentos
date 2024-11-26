@@ -1,6 +1,6 @@
-const API_URL_RANDOM = 'https://api.thecatapi.com/v1/images/search?limit=2&api_key=live_vDC6hislijU0Na9QScGR1Vm3VzBZhrxqDsSRCzNvNdxVIqeYw0x9aMkWqs7qhKFW';
-const API_URL_FAVOURITES = 'https://api.thecatapi.com/v1/favourites?api_key=live_vDC6hislijU0Na9QScGR1Vm3VzBZhrxqDsSRCzNvNdxVIqeYw0x9aMkWqs7qhKFW';
-const API_URL_FAVOURITES_DELETE = (id) => `https://api.thecatapi.com/v1/favourites/${id}?api_key=live_vDC6hislijU0Na9QScGR1Vm3VzBZhrxqDsSRCzNvNdxVIqeYw0x9aMkWqs7qhKFW`; //guardar una funcion
+const API_URL_RANDOM = 'https://api.thecatapi.com/v1/images/search?limit=2';
+const API_URL_FAVOURITES = 'https://api.thecatapi.com/v1/favourites';
+const API_URL_FAVOURITES_DELETE = (id) => `https://api.thecatapi.com/v1/favourites/${id}`; //guardar una funcion
 
 //crear una constante para llamar cualquiere elemento con el id error
 const spanError = document.getElementById('error');
@@ -28,10 +28,13 @@ async function loadRandomMichis() {
     }
 }
 
-
 async function loadFavouritesMichis() {
-    
-    const res = await fetch(API_URL_FAVOURITES);
+    const res = await fetch(API_URL_FAVOURITES,{ //Agregamos info para dejar de pasar el key por la URL 
+        method: 'GET',
+        headers: {
+            'X-API-KEY':'live_vDC6hislijU0Na9QScGR1Vm3VzBZhrxqDsSRCzNvNdxVIqeYw0x9aMkWqs7qhKFW',
+        },
+    });
     const data = await res.json();
     console.log('Favorites');
     console.log(data);
@@ -72,11 +75,13 @@ async function loadFavouritesMichis() {
 }
 
 //funcion asincrona para guardar michis favoritos
-
 async function saveFavouriteMichi(id){
     const res = await fetch(API_URL_FAVOURITES, {
         method:'POST', 
-        headers:{'Content-Type': 'application/json'},
+        headers:{
+            'Content-Type': 'application/json',
+            'X-API-KEY': 'live_vDC6hislijU0Na9QScGR1Vm3VzBZhrxqDsSRCzNvNdxVIqeYw0x9aMkWqs7qhKFW',
+        },
         body: JSON.stringify({image_id:id}), 
     }); //creamos una variable para traer fetch de tipo POST con un 2do argumento (UN OBJETO que indique POST)
     
@@ -95,7 +100,10 @@ async function saveFavouriteMichi(id){
 //crear una funcion asincrona que reciba un id a eliminar
 async function deleteavouriteMichi(id) {
     const res = await fetch(API_URL_FAVOURITES_DELETE(id), { //creamos una variable para traer fetch de tipo DELETE, 1er Argumento la URL y 2do argumento (UN OBJETO que indique DELETE y el id)
-        method:'DELETE',  
+        method:'DELETE',
+        headers: {
+            'X-API-KEY': 'live_vDC6hislijU0Na9QScGR1Vm3VzBZhrxqDsSRCzNvNdxVIqeYw0x9aMkWqs7qhKFW',
+        },  
     }); 
     const data = await res.json(); //convertir la respuesta en json
 
