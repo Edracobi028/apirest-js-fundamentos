@@ -114,6 +114,6 @@ async function deleteavouriteMichi(id) {
         loadFavouritesMichis();
     }
 }
-
+//Agregue esta linea desde github para hacer prueba de git pull
 loadRandomMichis();
 loadFavouritesMichis();
