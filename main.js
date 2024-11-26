@@ -3,7 +3,7 @@ const API_URL_FAVOURITES = 'https://api.thecatapi.com/v1/favourites';
 const API_URL_FAVOURITES_DELETE = (id) => `https://api.thecatapi.com/v1/favourites/${id}`; //guardar una funcion
 
 //crear una constante para llamar cualquiere elemento con el id error
-const spanError = document.getElementById('error');
+const spanError = document.getElementById('error')
 
 async function loadRandomMichis() {
     const res = await fetch(API_URL_RANDOM);
@@ -12,7 +12,7 @@ async function loadRandomMichis() {
     console.log('Random');
     console.log(data);
 
-    if (res.status !== 200 ){
+    if (res.status !== 200) {
         spanError.innerHTML = "Hubo un error: " + res.status;
     }else{
         const img1 = document.getElementById('img1');
@@ -82,14 +82,14 @@ async function saveFavouriteMichi(id){
             'Content-Type': 'application/json',
             'X-API-KEY': 'live_vDC6hislijU0Na9QScGR1Vm3VzBZhrxqDsSRCzNvNdxVIqeYw0x9aMkWqs7qhKFW',
         },
-        body: JSON.stringify({image_id:id}), 
+        body: JSON.stringify({image_id:id}), //formatear para que pueda ser leido
     }); //creamos una variable para traer fetch de tipo POST con un 2do argumento (UN OBJETO que indique POST)
     
     const data = await res.json(); //convertir la respuesta en json
     console.log('Save');
     console.log(res);
 
-    if (res.status !== 200 ){
+    if (res.status !== 200) {
         spanError.innerHTML = "Hubo un error: " + res.status + data.message;
     } else {
         console.log('Michi guardado en favoritos');
