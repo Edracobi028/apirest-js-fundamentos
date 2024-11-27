@@ -1,6 +1,8 @@
 const API_URL_RANDOM = 'https://api.thecatapi.com/v1/images/search?limit=2';
 const API_URL_FAVOURITES = 'https://api.thecatapi.com/v1/favourites';
 const API_URL_FAVOURITES_DELETE = (id) => `https://api.thecatapi.com/v1/favourites/${id}`; //guardar una funcion
+//crear una url API para subir imagenes
+const API_URL_UPLOAD = 'https://api.thecatapi.com/v1/images/upload';
 
 //crear una constante para llamar cualquiere elemento con el id error
 const spanError = document.getElementById('error')
@@ -114,6 +116,34 @@ async function deleteavouriteMichi(id) {
         loadFavouritesMichis();
     }
 }
+
+async function uploadMichiPhoto(){
+    const form = document.getElementById('uploadingForm'); //llamar a cualquier nodo de html que contenga el id: uploadingForm
+    const formData = new FormData(form);    //instancia de la Clase, enviando como argumento el formulario
+    console.log(formData.get('file')); //obtener la llave file
+
+    const res = await fetch(API_URL_UPLOAD,{
+        method: 'POST',
+        headers: {
+            //'Content-Type': 'multipart/form-data',
+            'X-API-KEY': 'live_vDC6hislijU0Na9QScGR1Vm3VzBZhrxqDsSRCzNvNdxVIqeYw0x9aMkWqs7qhKFW',
+        },
+        body: formData,
+    } ); //constante para traer con fetch
+
+    const data = await res.json();
+
+    if (res.status !== 201) {
+        spanError.innerHTML = `Hubo un error al subir michi: ${res.status} ${data.message}`
+    }
+    else {
+        console.log("Foto de michi cargada :)");
+        console.log({ data });
+        console.log(data.url);
+        saveFavouriteMichi(data.id) //para agregar el michi cargado a favoritos.
+    }
+}
+
 //Agregue esta linea desde github para hacer prueba de git pull
 //Esta es una linea que no está en la rama development
 loadRandomMichis();
