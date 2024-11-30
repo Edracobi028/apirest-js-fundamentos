@@ -44,6 +44,7 @@ if (isNewArchitectureEnabled()) {
 }
 
 android {
+    namespace "com.ReactNativeBlobUtil"
     compileSdkVersion safeExtGet('compileSdkVersion', 30)
     buildToolsVersion safeExtGet('buildToolsVersion', '28.0.3')
     defaultConfig {
