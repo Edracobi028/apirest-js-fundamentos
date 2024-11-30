@@ -1,0 +1,27 @@
+Fetch tiene otros parámetros aparte de los usados durante el curso, algunas son:
+
+Mode
+
+Determina el modo que quieres usar para la request:
+
+cors: bloquea la información
+no-cors: no bloquea la información
+same-origin: bloquea la información a menos que tanto el frontend y backend vengan del mismo origen (por ejemplo, que el frontend desde https://platzi.com/home haga solicitudes al backend en https://platzi.com/api/home
+Cache
+
+Indica como la request interactuará con el HTTP cache del navegador.
+
+Las opciones son: default, no-store, reload, no-cache, force-cache, o only-if-cached.
+
+En general no tocamos mucho esta opción ya que fetch por si solo maneja y optimiza el uso de esta configuración. Usarlo solo cuando tengamos un caso muy especifico.
+
+Request Cache
+
+Redirect
+
+Determina la forma en que manejamos las redirecciones (status code 300).
+
+follow: seguir redirecciones automáticamente
+error: abortar si sucede un error durante la redirección
+manual: gestionar redirecciones manualmente
+El valor por defecto en Chrome es follow

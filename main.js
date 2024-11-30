@@ -1,3 +1,4 @@
+//REST = Protocolo de transferencia de datos por HTTP
 const api = axios.create({ //constante de axios para guardar el inicio de las URL
     baseURL: 'https://api.thecatapi.com/v1'
 });  
