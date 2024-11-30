@@ -1,3 +1,9 @@
+const api = axios.create({ //constante de axios para guardar el inicio de las URL
+    baseURL: 'https://api.thecatapi.com/v1'
+});  
+
+api.defaults.headers.common['X-API-KEY'] = 'live_vDC6hislijU0Na9QScGR1Vm3VzBZhrxqDsSRCzNvNdxVIqeYw0x9aMkWqs7qhKFW'; //declara el API KEY para llamarla dinamicamente
+
 const API_URL_RANDOM = 'https://api.thecatapi.com/v1/images/search?limit=2';
 const API_URL_FAVOURITES = 'https://api.thecatapi.com/v1/favourites';
 const API_URL_FAVOURITES_DELETE = (id) => `https://api.thecatapi.com/v1/favourites/${id}`; //guardar una funcion
@@ -78,21 +84,29 @@ async function loadFavouritesMichis() {
 
 //funcion asincrona para guardar michis favoritos
 async function saveFavouriteMichi(id){
-    const res = await fetch(API_URL_FAVOURITES, {
-        method:'POST', 
-        headers:{
-            'Content-Type': 'application/json',
-            'X-API-KEY': 'live_vDC6hislijU0Na9QScGR1Vm3VzBZhrxqDsSRCzNvNdxVIqeYw0x9aMkWqs7qhKFW',
-        },
-        body: JSON.stringify({image_id:id}), //formatear para que pueda ser leido
-    }); //creamos una variable para traer fetch de tipo POST con un 2do argumento (UN OBJETO que indique POST)
-    
-    const data = await res.json(); //convertir la respuesta en json
-    console.log('Save');
-    console.log(res);
 
-    if (res.status !== 200) {
-        spanError.innerHTML = "Hubo un error: " + res.status + data.message;
+    //constante asincrona llamando a la instancia que creamos = Solicitud post con Axios
+    const {data, status} = await api.post('/favourites',{ //ya trae en automatico data y status
+        image_id: id,
+    }); 
+
+    // const res = await fetch(API_URL_FAVOURITES, {
+    //     method:'POST', 
+    //     headers:{
+    //         'Content-Type': 'application/json',
+    //         'X-API-KEY': 'live_vDC6hislijU0Na9QScGR1Vm3VzBZhrxqDsSRCzNvNdxVIqeYw0x9aMkWqs7qhKFW',
+    //     },
+    //     body: JSON.stringify({image_id:id}), //formatear para que pueda ser leido
+    // }); //creamos una variable para traer fetch de tipo POST con un 2do argumento (UN OBJETO que indique POST)
+    
+    // const data = await res.json(); //convertir la respuesta en json
+
+    
+    console.log('Save');
+    console.log(data);
+
+    if (status !== 200) {
+        spanError.innerHTML = "Hubo un error: " + status + data.message;
     } else {
         console.log('Michi guardado en favoritos');
         loadFavouritesMichis();
