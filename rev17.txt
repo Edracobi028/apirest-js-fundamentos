@@ -16,7 +16,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath('com.android.tools.build:gradle:4.2.2')
+        classpath('com.android.tools.build:gradle:8.1.1')
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${safeExtGet('kotlinVersion', rnsDefaultKotlinVersion)}"
         classpath "com.diffplug.spotless:spotless-plugin-gradle:6.25.0"
     }
@@ -84,6 +84,7 @@ def REACT_NATIVE_MINOR_VERSION = REACT_NATIVE_VERSION.startsWith("0.0.0-") ? 100
 def IS_NEW_ARCHITECTURE_ENABLED = isNewArchitectureEnabled()
 
 android {
+    namespace "com.swmansion.rnscreens"
     compileSdkVersion safeExtGet('compileSdkVersion', rnsDefaultCompileSdkVersion)
     def agpVersion = Version.ANDROID_GRADLE_PLUGIN_VERSION
     if (agpVersion.tokenize('.')[0].toInteger() >= 7) {
@@ -132,8 +133,11 @@ android {
         abortOnError false
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = "17"
     }
     packagingOptions {
         // For some reason gradle only complains about the duplicated version of libreact_render libraries
