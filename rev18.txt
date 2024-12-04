@@ -9,7 +9,7 @@ buildscript {
     }
 
     dependencies {
-      classpath("com.android.tools.build:gradle:4.2.2")
+      classpath("com.android.tools.build:gradle:8.1.1")
     }
   }
 }
@@ -29,6 +29,7 @@ def getExtOrIntegerDefault(name) {
 apply plugin: 'com.android.library'
 
 android {
+  namespace "com.reactnativecommunity.netinfo"
   compileSdkVersion getExtOrIntegerDefault('compileSdkVersion')
 
   def agpVersion = com.android.Version.ANDROID_GRADLE_PLUGIN_VERSION
@@ -38,8 +39,8 @@ android {
   }
 
   compileOptions {
-      sourceCompatibility JavaVersion.VERSION_1_8
-      targetCompatibility JavaVersion.VERSION_1_8
+      sourceCompatibility JavaVersion.VERSION_17
+      targetCompatibility JavaVersion.VERSION_17
   }
 
   defaultConfig {
