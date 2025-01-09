@@ -56,6 +56,7 @@ async function loadFavouritesMichis() {
         section.innerHTML = ""; //Limpiar
         const h2 = document.createElement('h2');//Crear div
         const h2Text = document.createTextNode('Michis Favoritos'); //crear el texto
+        
         h2.appendChild(h2Text); //Cargar el texto
         section.appendChild(h2);  //Cargar el div a la seccion
 
@@ -66,19 +67,38 @@ async function loadFavouritesMichis() {
             const img = document.createElement('img'); // crear article
             const btn = document.createElement('button'); // crear article
             const btnText = document.createTextNode('Sacar michi de favoritos'); //crear texto
+            
+            const div = document.createElement('div');//crear div de la imagen
+            div.classList.add('hero'); //Agregar la clase hero al div
+
+            const divBtn = document.createElement('div');//crear div del boton
+            divBtn.classList.add('hero-btn'); //Agregar la clase hero al div
+
+
+            h2.style.padding = '15px 25px'; //agregar padding
+
 
             //Insertar el bloque con articulo, boton e imagen
             img.src = michi.image.url ; //A la imagen agregarle el src
-            img.width = 150; //A la imagen agregarle el src
+            //img.width = 250; //A la imagen agregarle el src
+            img.style.width = 'fit-content'; // Agregar por style ancho automatico
+            btn.style.color = 'red'; //Agregar por style color
             btn.appendChild(btnText); //meter texto al boton
             btn.onclick = () => deleteavouriteMichi(michi.id); //meter texto al boton
 
+            //Agregamos al div del boton el boton
+            divBtn.appendChild(btn);
             //Agregamos al article estas dos cosas
-            article.appendChild(btn);
+            article.appendChild(divBtn);
             article.appendChild(img);
 
-            //Agregamos a la seccion el articulo
-            section.appendChild(article);
+
+            //Agregamos a la div el articulo
+            div.appendChild(article);
+
+            //Agregamos a la seccion el div
+            section.appendChild(div);
+
         });
     }
 }
